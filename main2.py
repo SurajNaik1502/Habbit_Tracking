@@ -1,11 +1,11 @@
 import requests
+from datetime import datetime
 
 USERNAME = "suru"
 TOKEN = "fbksdjhbvfedbvienb324h4iefd"
 GRAPH_ID = "graph1"
 pixela_endpoint = "https://pixe.la/v1/users"
 
-# User Parameters
 user_params = {
     "token": TOKEN,
     "username": USERNAME,
@@ -13,14 +13,13 @@ user_params = {
     "notMinor": "yes",
 }
 
-# Graph Endpoint
 graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs"
 
 graph_config = {
     "id": GRAPH_ID,
     "name": "Cycling Graph",
-    "unit": "Km",  # Unit label, not related to the quantity value
-    "type": "float",  # Must match the format of quantity
+    "unit": "Km",
+    "type": "float",
     "color": "sora",
 }
 
@@ -31,14 +30,13 @@ headers = {
 # response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
 # print(response.text)
 
-
-# Pixel Creation Endpoint
 pixel_creation_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 
-# Ensure the quantity is a valid float formatted as a string
+today = datetime(year=2025, month=1, day=3)
+
 pixel_data = {
-    "date": "20250104",  # Correctly formatted date (YYYYMMDD)
-    "quantity": "9.74",  # Valid float as a string
+    "date": today.strftime("%Y%m%d"),
+    "quantity": "15.74", 
 }
 
 response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
