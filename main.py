@@ -32,11 +32,11 @@ headers = {
 
 pixel_creation_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 
-today = datetime(year=2024, month=12, day=31)
+today = datetime.now()
 
 pixel_data = {
     "date": today.strftime("%Y%m%d"),
-    "quantity": "40.74", 
+    "quantity": input("How Many Kilometers did you cycle today? "), 
 }
 
 response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
@@ -57,3 +57,5 @@ print(response.text)
 # ## DELETE
 # response = requests.delete(url=delete_endpoint, headers=headers)
 # print(response.text)
+
+# https://pixe.la/v1/users/suru/graphs/graph1.html
